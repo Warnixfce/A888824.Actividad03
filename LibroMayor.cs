@@ -22,8 +22,14 @@ namespace A888824.Actividad03
                     while (!reader.EndOfStream)
                     {
                         var linea = reader.ReadLine();
-                        var cuenta = new Cuenta(linea);
-                        cuentas.Add(cuenta);
+                        try
+                        {
+                            var cuenta = new Cuenta(linea);
+                            cuentas.Add(cuenta);
+                        }
+                        catch(Exception e)
+                        { Console.WriteLine("Error al leer cuenta. Existe un dato inválido."); }
+
                     }
                 }                
             } 

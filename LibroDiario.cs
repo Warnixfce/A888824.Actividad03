@@ -10,8 +10,8 @@ namespace A888824.Actividad03
     class LibroDiario
     {       
         string archivoDiario = "Diario.txt";
-        List<Asiento> asientos = new List<Asiento>();        
-
+        List<Asiento> asientos = new List<Asiento>();
+        
         public LibroDiario()
         {
             if (File.Exists(archivoDiario))
@@ -21,8 +21,13 @@ namespace A888824.Actividad03
                     while (!reader.EndOfStream)
                     {
                         var linea1 = reader.ReadLine();
-                        var asiento = new Asiento(linea1);
-                        asientos.Add(asiento);
+                        try
+                        {
+                            var asiento = new Asiento(linea1);
+                            asientos.Add(asiento);
+                        }
+                        catch (Exception e)
+                        { Console.WriteLine("Error al leer el asiento. Existe un dato inválido."); }
                     }
                 }                
             }
@@ -41,7 +46,7 @@ namespace A888824.Actividad03
                 {
                     foreach (var asiento in asientos) //para cada asiento en el libro diario
                     {
-                        if (codigoCuenta == asiento.codigoDeCuenta) //si el codigo de cuenta que le paso es igual al codigo de cuenta del asiento...
+                        if (asiento.codigoDeCuenta == codigoCuenta) //si el codigo de cuenta que le paso es igual al codigo de cuenta del asiento...
                         {
                             if (fecha < asiento.fecha) //... si la fecha que le doy es menor a la fecha del asiento...
                             {
@@ -49,7 +54,6 @@ namespace A888824.Actividad03
                                 haber += asiento.haber; //acumulo en otra variable lo que haya en el haber                        
                             }
                         }
-
                     }
                 }
             }                        

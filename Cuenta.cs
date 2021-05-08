@@ -14,12 +14,12 @@ namespace A888824.Actividad03
         public decimal Haber { get; set; }
 
         public Cuenta(string linea)
-        {
+        {           
             var datos = linea.Split('|');
             Codigo = int.Parse(datos[0]);
             Fecha = DateTime.Parse(datos[1]);
             Debe = decimal.Parse(datos[2]);
-            Haber = decimal.Parse(datos[3]);            
+            Haber = decimal.Parse(datos[3]);
         }
 
         public string ObtenerLineaDatos() => $"{Codigo}|{Fecha:dd/MM/yyyy}|{Debe}|{Haber}";
@@ -28,7 +28,6 @@ namespace A888824.Actividad03
         {
             return $"Codigo de cuenta: {Codigo}, Fecha: {Fecha:dd/MM/yyyy}, Saldo debe: ${Debe}, Saldo haber: ${Haber}";
         }
-
 
     }
 }

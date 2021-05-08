@@ -15,13 +15,13 @@ namespace A888824.Actividad03
         public decimal haber { get; set; }
 
         public Asiento(string linea)
-        {
+        {         
             var datos = linea.Split('|');
             numero = int.Parse(datos[0]);
             fecha = DateTime.Parse(datos[1]);
             codigoDeCuenta = int.Parse(datos[2]);
             debe = decimal.Parse(datos[3]);
-            haber = decimal.Parse(datos[4]);
+            haber = decimal.Parse(datos[4]);             
         }
 
         public override string ToString()
