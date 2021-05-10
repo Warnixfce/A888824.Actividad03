@@ -9,7 +9,7 @@ namespace A888824.Actividad03
 {
     class LibroDiario
     {       
-        string archivoDiario = @"D:\Diario.txt";
+        string archivoDiario = "Diario.txt";
         List<Asiento> asientos = new List<Asiento>();
         
         public LibroDiario()

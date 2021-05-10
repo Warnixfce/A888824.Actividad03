@@ -9,7 +9,7 @@ namespace A888824.Actividad03
 {
     public class LibroMayor
     {   
-        string archivo = @"D:\Mayor.txt";
+        string archivo = "Mayor.txt";
         List<Cuenta> cuentas = new List<Cuenta>();
         LibroDiario diario = new LibroDiario();        
 

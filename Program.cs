@@ -31,9 +31,9 @@ namespace A888824.Actividad03
             //               02|03/04/2020|4000|200
             //               03|06/15/2020|6000|300
             // Considerar que mi pc está en INGLÉS (dejo el contenido con ese formato porque entiendo que tu pc también está en inglés).
-            // Por esto puse una ruta X de mi pc en ambos archivos para probar. Si no coincide con la tuya,
-            // por favor si podes cambiar la ruta a tu gusto para probarlo (porque entiendo que los archivos ya existirían), te lo agradecería;
-            // no es mi idea tener mal la actividad por este motivo.
+            // Por favor si podes poner los archivos en la ruta "bin\Debug" del proyecto para probarlo,
+            // te lo agradecería (no es mi idea tener mal la actividad por este motivo).
+            // Entiendo que según la consigna, ya existen los archvos.
             //                     --------------------------------
 
             bool salir = false;
