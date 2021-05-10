@@ -15,8 +15,8 @@ namespace A888824.Actividad03
             // 1) En el sistema, para las fechas de ambos libros consideré la forma de escritura "dd/mm/yyyy".
             // 2) Asumo que los archivos del libro Diario y del Mayor ya existen con una ruta (aún así valido que existan con ESA ruta).
             // 3) Asumo que las cuentas que están en el Mayor son las que se usan en el Diario (espero estar interpretando bien).
-            // 4) Cuando subo el proyecto a Github, no aparecen los archivos de texto del libro Diario ni del Mayor en la carpeta "bin\Debug" del proyecto.
-            //    Si bien están en mi pc, no aparecen en el Github. Dejo el contenido de los archivos que usé para probar acá escrito
+            // 4) Cuando bajo el proyecto de Github, no aparecen los archivos de texto del libro Diario ni del Mayor en la carpeta "bin\Debug" del proyecto.
+            //    Si bien existen en mi pc al subirlo a Github, no aparecen cuando lo bajo. Dejo el contenido de los archivos que usé para probar acá escrito
             //    (para que puedas probar el sistema):
             //  Libro Diario: 1|03/04/2020|01|200|900
             //                1|03/04/2020|02|1000|300
@@ -28,7 +28,8 @@ namespace A888824.Actividad03
             //               02|03/04/2020|4000|200
             //               03|06/15/2020|6000|300
             // Considerar que mi pc está en INGLÉS (dejo el contenido con ese formato porque entiendo que tu pc también está en inglés).
-            // Por favor si podes poner los archivos en la ruta "bin\Debug" para probarlo, genial. No es mi intención tener mal la actividad por este motivo.
+            // Por favor si podes poner los archivos en la ruta "bin\Debug" para probarlo, te lo agradecería;
+            // no es mi intención tener mal la actividad por este motivo.
             //                     --------------------------------
 
             bool salir = false;
