@@ -30,7 +30,7 @@ namespace A888824.Actividad03
             //               02|03/04/2020|4000|200
             //               03|06/15/2020|6000|300
             // Considerar que mi pc está en INGLÉS (dejo el contenido con ese formato porque entiendo que tu pc también está en inglés).
-            // Por favor si podes poner los archivos en la ruta "bin\Debug" para probarlo (porque entiendo que los archivos ya existirían), te lo agradecería;
+            // Por esto puse una ruta X de mi pc. Si no coincide con la tuya, por favor si podes cambiar la ruta a tu gusto para probarlo (porque entiendo que los archivos ya existirían), te lo agradecería;
             // no es mi intención tener mal la actividad por este motivo.
             //                     --------------------------------
 
