@@ -21,13 +21,20 @@ namespace A888824.Actividad03
                     while (!reader.EndOfStream)
                     {
                         var linea1 = reader.ReadLine();
-                        try
+                        if (linea1 == "NroAsiento|Fecha|CodigoCuenta|Debe|Haber")
                         {
-                            var asiento = new Asiento(linea1);
-                            asientos.Add(asiento);
+                            continue;
                         }
-                        catch (Exception e)
-                        { Console.WriteLine("Error al leer el asiento. Existe un dato inválido."); }
+                        else
+                        {
+                            try
+                            {
+                                var asiento = new Asiento(linea1);
+                                asientos.Add(asiento);
+                            }
+                            catch (Exception e)
+                            { Console.WriteLine("Error al leer cuenta. Existe un dato inválido."); }
+                        }                       
                     }
                 }                
             }
@@ -35,28 +42,24 @@ namespace A888824.Actividad03
 
         public void MovimientosPosteriores(int codigoCuenta, DateTime fecha, ref decimal debe, ref decimal haber)
         {
-            bool existe = Existe();
-            if(existe)
+            if (asientos.Count == 0)
             {
-                if (asientos.Count == 0)
+                Console.WriteLine("No existen asientos cargados en el libro diario.");
+            }
+            else
+            {
+                foreach (var asiento in asientos) //para cada asiento en el libro diario
                 {
-                    Console.WriteLine("No existen asientos cargados en el libro diario.");
-                }
-                else
-                {
-                    foreach (var asiento in asientos) //para cada asiento en el libro diario
+                    if (asiento.codigoDeCuenta == codigoCuenta) //si el codigo de cuenta que le paso es igual al codigo de cuenta del asiento...
                     {
-                        if (asiento.codigoDeCuenta == codigoCuenta) //si el codigo de cuenta que le paso es igual al codigo de cuenta del asiento...
+                        if (fecha < asiento.fecha) //... si la fecha que le doy es menor a la fecha del asiento...
                         {
-                            if (fecha < asiento.fecha) //... si la fecha que le doy es menor a la fecha del asiento...
-                            {
-                                debe += asiento.debe; //acumulo en una variable lo que haya en el debe
-                                haber += asiento.haber; //acumulo en otra variable lo que haya en el haber                        
-                            }
+                            debe += asiento.debe; //acumulo en una variable lo que haya en el debe
+                            haber += asiento.haber; //acumulo en otra variable lo que haya en el haber                        
                         }
                     }
                 }
-            }                        
+            }            
         }
 
         public bool Existe()

@@ -21,15 +21,22 @@ namespace A888824.Actividad03
                 {
                     while (!reader.EndOfStream)
                     {
-                        var linea = reader.ReadLine();
-                        try
+                        var linea = reader.ReadLine();                        
+                        if (linea == "CodigoCuenta|Fecha|Debe|Haber")
                         {
-                            var cuenta = new Cuenta(linea);
-                            cuentas.Add(cuenta);
+                            continue;
                         }
-                        catch(Exception e)
-                        { Console.WriteLine("Error al leer cuenta. Existe un dato inválido."); }
-
+                        else
+                        {
+                            try
+                            {
+                                var cuenta = new Cuenta(linea);
+                                cuentas.Add(cuenta);
+                            }
+                            catch (Exception e)
+                            { Console.WriteLine("Error al leer cuenta. Existe un dato inválido."); }                            
+                        }
+                        
                     }
                 }                
             } 
@@ -67,25 +74,32 @@ namespace A888824.Actividad03
                 }
                 else
                 {
-                    foreach (var cuenta in cuentas)
+                    if (diario.Existe() == false)
                     {
-                        var fechaCuenta = cuenta.Fecha;
-                        var codigoCuenta = cuenta.Codigo;
-                        decimal debe = 0;
-                        decimal haber = 0;                        
-
-                        diario.MovimientosPosteriores(codigoCuenta, fechaCuenta, ref debe, ref haber);
-
-                        if (debe != 0 || haber != 0)
-                        {
-                            cuenta.Debe += debe;
-                            cuenta.Haber += haber;
-                            cuenta.Fecha = DateTime.Today;
-                        } 
+                        return poderActualizar;
                     }
-                    Grabar();
-                }
-                poderActualizar = true;
+                    else
+                    {
+                        foreach (var cuenta in cuentas)
+                        {
+                            var fechaCuenta = cuenta.Fecha;
+                            var codigoCuenta = cuenta.Codigo;
+                            decimal debe = 0;
+                            decimal haber = 0;
+
+                            diario.MovimientosPosteriores(codigoCuenta, fechaCuenta, ref debe, ref haber);
+
+                            if (debe != 0 || haber != 0)
+                            {
+                                cuenta.Debe += debe;
+                                cuenta.Haber += haber;
+                                cuenta.Fecha = DateTime.Today;
+                            }
+                            Grabar();
+                        }
+                        poderActualizar = true;
+                    }                    
+                }                
             }
             return poderActualizar;
         }
@@ -94,6 +108,7 @@ namespace A888824.Actividad03
         {
             using (var writer = new StreamWriter(archivo, append: false))
             {
+                writer.WriteLine("CodigoCuenta|Fecha|Debe|Haber");
                 foreach (var cuenta in cuentas)
                 {
                     var linea = cuenta.ObtenerLineaDatos();
