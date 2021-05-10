@@ -38,6 +38,11 @@ namespace A888824.Actividad03
                     }
                 }                
             }
+            else
+            {
+                using (StreamWriter w = File.AppendText("Diario.txt"))
+                Console.WriteLine($"El archivo {archivoDiario} no fue encontrado. Se creó un nuevo archivo vacío con dicho nombre en la ruta definida.");
+            }
         }
 
         public void MovimientosPosteriores(int codigoCuenta, DateTime fecha, ref decimal debe, ref decimal haber)
@@ -64,15 +69,5 @@ namespace A888824.Actividad03
             return true;
         }
 
-        public bool Existe()
-        {
-            bool existe = true;
-            if (!File.Exists(archivoDiario))
-            {
-                Console.WriteLine($"No existe el archivo con la ruta {archivoDiario}. Por favor cierre la aplicación, corrobore la ruta del archivo y vuelva a iniciar el sistema");
-                existe = false;
-            }
-            return existe;
-        }
     }
 }

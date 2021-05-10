@@ -11,7 +11,8 @@ namespace A888824.Actividad03
     {   
         string archivo = "Mayor.txt";
         List<Cuenta> cuentas = new List<Cuenta>();
-        LibroDiario diario = new LibroDiario();        
+        LibroDiario diario;
+        bool esNuevo { get; set; } = false;
 
         public LibroMayor()
         {
@@ -35,52 +36,53 @@ namespace A888824.Actividad03
                             }
                             catch (Exception e)
                             { Console.WriteLine("Error al leer cuenta. Existe un dato inválido."); }                            
-                        }
-                        
+                        }                        
                     }
                 }                
-            } 
+            }
+            else
+            {
+                using (StreamWriter w = File.AppendText("Mayor.txt"))
+                Console.WriteLine($"El archivo {archivo} no fue encontrado. Se creó un nuevo archivo vacío con dicho nombre en la ruta definida.");
+                esNuevo = true;
+            }
         }
 
         public void Mostrar()
         {
-            bool existe = Existe();
-            if (existe)
+            if (esNuevo)
             {
-                if (cuentas.Count == 0)
+                return;
+            }
+            if (cuentas.Count == 0)
+            {
+                Console.WriteLine("No hay cuentas en el libro mayor.");
+            }
+            else
+            {
+                Console.WriteLine("Las cuentas y sus datos en el libro mayor son: ");
+                foreach (var c in cuentas)
                 {
-                    Console.WriteLine("No hay cuentas en el libro mayor.");
+                    Console.WriteLine(c.ToString());
                 }
-                else
-                {
-                    Console.WriteLine("Las cuentas y sus datos en el libro mayor son: ");
-                    foreach (var c in cuentas)
-                    {
-                        Console.WriteLine(c.ToString());
-                    }
-                }
-            }      
+            }
         }
 
         public bool Actualizar()
-        {            
-            bool existe = Existe();
-            if(!existe)
+        {
+            diario = new LibroDiario();
+            if (esNuevo)
             {
                 return false;
             }
-            if(cuentas.Count == 0)
+            if (cuentas.Count == 0)
             {
                 Console.WriteLine("No es posible actualizar las cuentas del libro mayor puesto que no hay cuentas cargadas.");
                 return false;
             }
-            if(diario.HayAsientos() == false)
+            if (diario.HayAsientos() == false)
             {
                 Console.WriteLine("No existen asientos cargados en el libro diario.");
-                return false;
-            }
-            if (diario.Existe() == false)
-            {
                 return false;
             }
             foreach (var cuenta in cuentas)
@@ -135,17 +137,6 @@ namespace A888824.Actividad03
             {
                 Console.WriteLine("Las cuentas y los datos que fueron actualizados son: " + System.Environment.NewLine + Mensaje);
             }
-        }
-
-        public bool Existe()
-        {
-            bool existe = true;
-            if (!File.Exists(archivo))
-            {
-                Console.WriteLine($"No existe el archivo con la ruta {archivo}. Por favor cierre la aplicación, corrobore la ruta del archivo y vuelva a iniciar el sistema");
-                existe = false;
-            }
-            return existe;
         }
     }
 }

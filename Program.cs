@@ -33,7 +33,7 @@ namespace A888824.Actividad03
             // Considerar que mi pc está en INGLÉS (dejo el contenido con ese formato porque entiendo que tu pc también está en inglés).
             // Por favor si podes poner los archivos en la ruta "bin\Debug" del proyecto para probarlo,
             // te lo agradecería (no es mi idea tener mal la actividad por este motivo).
-            // Entiendo que según la consigna, ya existen los archvos.
+            // Entiendo que según la consigna, ya existen los archvos. Aún así, si no existen, creo los archivos vacíos.
             //                     --------------------------------
 
             bool salir = false;
@@ -44,7 +44,7 @@ namespace A888824.Actividad03
                 Console.WriteLine("1 - Consultar datos");
                 Console.WriteLine("2 - Actualizar datos");
                 Console.WriteLine("9 - Salir");
- 
+                
                 Console.WriteLine("Ingrese una opción y presione Enter: ");
                 string opcion = Console.ReadLine();
                 switch (opcion)
