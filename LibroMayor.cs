@@ -63,45 +63,44 @@ namespace A888824.Actividad03
         }
 
         public bool Actualizar()
-        {
-            bool poderActualizar = false;
+        {            
             bool existe = Existe();
-            if (existe)
+            if(!existe)
             {
-                if (cuentas.Count == 0)
-                {
-                    Console.WriteLine("No es posible actualizar las cuentas del libro mayor puesto que no hay cuentas cargadas.");                    
-                }
-                else
-                {
-                    if (diario.Existe() == false)
-                    {
-                        return poderActualizar;
-                    }
-                    else
-                    {
-                        foreach (var cuenta in cuentas)
-                        {
-                            var fechaCuenta = cuenta.Fecha;
-                            var codigoCuenta = cuenta.Codigo;
-                            decimal debe = 0;
-                            decimal haber = 0;
-
-                            diario.MovimientosPosteriores(codigoCuenta, fechaCuenta, ref debe, ref haber);
-
-                            if (debe != 0 || haber != 0)
-                            {
-                                cuenta.Debe += debe;
-                                cuenta.Haber += haber;
-                                cuenta.Fecha = DateTime.Today;
-                            }
-                            Grabar();
-                        }
-                        poderActualizar = true;
-                    }                    
-                }                
+                return false;
             }
-            return poderActualizar;
+            if(cuentas.Count == 0)
+            {
+                Console.WriteLine("No es posible actualizar las cuentas del libro mayor puesto que no hay cuentas cargadas.");
+                return false;
+            }
+            if(diario.HayAsientos() == false)
+            {
+                Console.WriteLine("No existen asientos cargados en el libro diario.");
+                return false;
+            }
+            if (diario.Existe() == false)
+            {
+                return false;
+            }
+            foreach (var cuenta in cuentas)
+            {
+                var fechaCuenta = cuenta.Fecha;
+                var codigoCuenta = cuenta.Codigo;
+                decimal debe = 0;
+                decimal haber = 0;
+
+                diario.MovimientosPosteriores(codigoCuenta, fechaCuenta, ref debe, ref haber);
+
+                if (debe != 0 || haber != 0)
+                {
+                    cuenta.Debe += debe;
+                    cuenta.Haber += haber;
+                    cuenta.Fecha = DateTime.Today;
+                }
+                Grabar();                             
+            }
+            return true;
         }
 
         private void Grabar()
